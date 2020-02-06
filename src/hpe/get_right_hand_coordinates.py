@@ -9,7 +9,7 @@ from .body import Body
 from .hand import Hand
 
 
-def infer_video(video_path, body_weight, hand_weight):
+def get_right_hand_coordinates(video_path, body_weight, hand_weight):
     """動画を推論して右手の各フレームにおける座標を返す
 
     Parameters

@@ -24,7 +24,8 @@ def infer_video(video_path, body_weight, hand_weight):
     Returns
     -------
     np.ndarray(int)
-        right
+        Array of right hand coordinates.
+        right coordinates based on middle finger coordinates
     """
     # build model and load weight
     body_estimation = Body(body_weight)
@@ -55,6 +56,7 @@ def infer_video(video_path, body_weight, hand_weight):
             peaks[:, 0] = np.where(peaks[:, 0] == 0, peaks[:, 0], peaks[:, 0] + x)
             peaks[:, 1] = np.where(peaks[:, 1] == 0, peaks[:, 1], peaks[:, 1] + y)
 
-            right_hand_each_frame.append(peaks)
+            # Set the middle finger coordinates to the right hand coordinates
+            right_hand_each_frame.append(peaks[13, :])
 
     return np.asarray(right_hand_each_frame, dtype=int)
